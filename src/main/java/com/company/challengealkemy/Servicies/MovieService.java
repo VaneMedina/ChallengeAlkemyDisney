@@ -138,18 +138,19 @@ public class MovieService {
     }
 
     public List<MovieDtoItem10> movieDtoItem10sByDate(String order){
-        List<Movie> moviesEntity = movieRepository.findAll();
         List<MovieDtoItem10> moviesDto = new ArrayList<>();
-        moviesEntity.forEach(movie -> moviesDto.add(modelMapper.map(movie, MovieDtoItem10.class)));
-        MovieDtoItem10 movieDtoItem10 = new MovieDtoItem10();
-        if (order == "ASC") {
-            moviesDto.sort((Comparator<? super MovieDtoItem10>) movieDtoItem10.getCreationDate());
+        if (order.equals("ASC")) {
+            List<Movie> moviesEntity = movieRepository.findAllByOrderByCreationDateAsc();
+            moviesEntity.forEach(movie -> moviesDto.add(modelMapper.map(movie, MovieDtoItem10.class)));
+            return moviesDto;
         }
-        // TODO: 7/7/2021 Realizar el ordenamiento inverso.
-        else if (order == "DES") {
-            Collections.reverse(moviesDto);
+        else if (order.equals("DESC")) {
+            List<Movie> moviesEntity = movieRepository.findAllByOrderByCreationDateDesc();
+            moviesEntity.forEach(movie -> moviesDto.add(modelMapper.map(movie, MovieDtoItem10.class)));
+            return moviesDto;
         }
-        return moviesDto;
+        else
+            return null;
     }
 
 

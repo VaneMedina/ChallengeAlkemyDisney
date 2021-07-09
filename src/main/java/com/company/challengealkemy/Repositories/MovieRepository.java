@@ -12,4 +12,6 @@ import java.util.List;
 public interface MovieRepository extends JpaRepository<Movie, Integer> {
     List<Movie> findAllByTitleContaining(String name);
 
+    List<Movie> findAllByOrderByCreationDateDesc();
+    List<Movie> findAllByOrderByCreationDateAsc();
 }
