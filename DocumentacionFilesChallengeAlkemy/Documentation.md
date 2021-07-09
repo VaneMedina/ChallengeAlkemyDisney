@@ -1,4 +1,4 @@
-#CHALLENGE BACKEND - Java Spring Boot (API) 🚀
+    #CHALLENGE BACKEND - Java Spring Boot (API) 🚀
 
 ##Objective
 
@@ -118,6 +118,3 @@ information so that any frontend can consume it.
 [Photo about character edit](C:\Users\user\Documents\Ada\ChallengeAlkemy\DocumentacionChallengeAlkemy/CharacterDetails-editSuccess.png)
 
         Edits the character only if all atributtes are presents and if the fields to edit aren´t equals to the current fields.
-
-
-
