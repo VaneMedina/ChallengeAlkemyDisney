@@ -29,7 +29,7 @@ public class CharacterService {
     public Character findCharacterById(String id) {
         try {
             return characterRepository.findById(Integer.parseInt(id)).get();
-        } catch (NoSuchElementException e) {
+        } catch (NullPointerException e) {
             return null;
         }
     }
@@ -74,9 +74,8 @@ public class CharacterService {
 
             if (character.getWeight() != null && character.getWeight() != characterEntity.getWeight())
                 characterEntity.setWeight(character.getWeight());
-
+            characterRepository.save(characterEntity);
         }
-        characterRepository.save(characterEntity);
     }
 
     public void deleteCharacter(String id) {

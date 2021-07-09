@@ -49,7 +49,7 @@ public class CharacterController {
     public ResponseEntity<String> editCharacter(@PathVariable String id, @RequestBody CharacterDtoSave character){
         try{
             characterService.editCharacter(id, character);
-            return ResponseEntity.status(HttpStatus.CREATED).body("The character was edit.");
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("The character was edit.");
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The character wasn't edit.");
         }

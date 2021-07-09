@@ -10,7 +10,6 @@ import com.company.challengealkemy.Model.Movie;
 import com.company.challengealkemy.Repositories.CharacterRepository;
 import com.company.challengealkemy.Repositories.GenreRepository;
 import com.company.challengealkemy.Repositories.MovieRepository;
-import javassist.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -79,12 +78,6 @@ public class MovieService {
         movieRepository.save(movie);
     }
 
-    public void validateQualification(Integer qualification, Movie movie, MovieDtoSave movieDtoSave){
-        if (qualification>0 && qualification<6)
-            movie.setQualification(movieDtoSave.getQualification());
-        else
-            throw new IndexOutOfBoundsException("The qualification must be between 1 and 5.");
-    }
 
 
     public void saveMovieWithCharacters(MovieDtoSave movieDtoSave, Movie movie){
@@ -110,6 +103,13 @@ public class MovieService {
         }
     }
 
+    public void validateQualification(Integer qualification, Movie movie, MovieDtoSave movieDtoSave){
+        if (qualification>0 && qualification<6)
+            movie.setQualification(movieDtoSave.getQualification());
+        else
+            throw new IndexOutOfBoundsException("The qualification must be between 1 and 5.");
+    }
+
     /**
      * For edit movies, the fields image and title must be filled.
      **/
@@ -120,7 +120,9 @@ public class MovieService {
         else
             if (!movie.getImage().isEmpty() && movie.getImage() != movieEntity.getImage()) movieEntity.setImage(movie.getImage());
             if (!movie.getTitle().isEmpty() && movie.getTitle() != movieEntity.getTitle()) movieEntity.setTitle(movie.getTitle());
-        movieRepository.save(movieEntity);
+            if (movie.getQualification() != null && movie.getQualification() != movieEntity.getQualification())
+                validateQualification(movie.getQualification() ,movieEntity, movie);
+            movieRepository.save(movieEntity);
     }
 
     private List<Movie> findAllByTitleContaining(String name) {
