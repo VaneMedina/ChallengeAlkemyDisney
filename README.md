@@ -16,7 +16,7 @@ information so that any frontend can consume it.
 
 
 [Photo about genres on the data base](C:\Users\user\Documents\Ada\ChallengeAlkemy\DocumentacionChallengeAlkemy/DB.png)
-    
+
         The genres must be setted manually trought data base.
 
 ### Character details
@@ -118,6 +118,3 @@ information so that any frontend can consume it.
 [Photo about character edit](C:\Users\user\Documents\Ada\ChallengeAlkemy\DocumentacionChallengeAlkemy/CharacterDetails-editSuccess.png)
 
         Edits the character only if all atributtes are presents and if the fields to edit aren´t equals to the current fields.
-
-
-
