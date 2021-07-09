@@ -4,6 +4,8 @@ import com.company.challengealkemy.Dto.MovieDtoSave;
 import com.company.challengealkemy.Model.Movie;
 import com.company.challengealkemy.Servicies.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,21 +34,36 @@ public class MovieController {
 
 
     @PostMapping("/save")
-    public void saveMovie(@RequestBody MovieDtoSave movie){
-        movieService.saveMovie(movie);
+    public ResponseEntity<String> saveMovie(@RequestBody MovieDtoSave movie){
+        try{
+            movieService.saveMovie(movie);
+            return ResponseEntity.status(HttpStatus.CREATED).body("The movie was created.");
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The movie wasn't created.");
+        }
     }
 
 
     @PutMapping("/edit/{id}")
-    public void editCharacter(@PathVariable String id, @RequestBody MovieDtoSave movieDtoSave){
-        movieService.editMovie(id, movieDtoSave);
+    public ResponseEntity<String> editCharacter(@PathVariable String id, @RequestBody MovieDtoSave movieDtoSave){
+        try{
+            movieService.editMovie(id, movieDtoSave);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("The movie was edited.");
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The movie wasn't edited.");
+        }
+
     }
 
-
-    // TODO: 6/7/2021 No me borra las peliculas. Error con algo la foreing key.
     @DeleteMapping("/delete/{id}")
-    public void deleteMovie(@PathVariable String id){
-        movieService.deleteMovie(id);
+    public ResponseEntity<String> deleteMovie(@PathVariable String id){
+        try{
+            movieService.deleteMovie(id);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("The movie was deleted.");
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The movie wasn't deleted.");
+        }
+
     }
 }
 

@@ -73,9 +73,17 @@ public class MovieService {
         Movie movie = new Movie();
         movie.setImage(movieDtoSave.getImage());
         movie.setTitle(movieDtoSave.getTitle());
+        validateQualification(movieDtoSave.getQualification(), movie, movieDtoSave);
         saveMovieWithCharacters(movieDtoSave,movie);
         saveMovieWithGenres(movieDtoSave,movie);
         movieRepository.save(movie);
+    }
+
+    public void validateQualification(Integer qualification, Movie movie, MovieDtoSave movieDtoSave){
+        if (qualification>0 && qualification<6)
+            movie.setQualification(movieDtoSave.getQualification());
+        else
+            throw new IndexOutOfBoundsException("The qualification must be between 1 and 5.");
     }
 
 
@@ -101,7 +109,6 @@ public class MovieService {
             }
         }
     }
-
 
     /**
      * For edit movies, the fields image and title must be filled.

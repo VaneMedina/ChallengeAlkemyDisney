@@ -20,9 +20,10 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody User user){
+    public ResponseEntity<String> registerUser(@RequestBody User user){
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(userService.registerUser(user));
+            userService.registerUser(user);
+            return ResponseEntity.status(HttpStatus.CREATED).body("The user was registered.");
         }catch (ResponseStatusException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Can't register user.");
         }
@@ -36,5 +37,4 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Incorrect credentials.");
         }
     }
-
 }

@@ -130,7 +130,7 @@ public class CharacterService {
     }
 
 
-    public List<Object> paraUrlDeCharacters(Optional<String> name, Optional<Integer> age, Optional<Integer> movies){
+    public List<Object> forCharactersURL(Optional<String> name, Optional<Integer> age, Optional<Integer> movies){
         if (name.isPresent())
             return Collections.singletonList(this.characterDtosItem6ListByName(name.get()));
         else if(age.isPresent())

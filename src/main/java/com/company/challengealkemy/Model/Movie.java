@@ -25,7 +25,7 @@ public class Movie {
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate = new Date();
-    private Integer qualification; //(del 1 al 5).
+    private Integer qualification;
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @Column(nullable = false)

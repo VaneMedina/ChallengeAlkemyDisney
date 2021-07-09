@@ -5,6 +5,8 @@ import com.company.challengealkemy.Dto.CharacterDtoSave;
 import com.company.challengealkemy.Model.Character;
 import com.company.challengealkemy.Servicies.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,26 +31,39 @@ public class CharacterController {
 
     @GetMapping("/characters")
     public List<Object> paraUrlDeCharacters(@RequestParam Optional<String> name, @RequestParam Optional<Integer> age, @RequestParam Optional<Integer> movies){
-        return characterService.paraUrlDeCharacters(name, age, movies);
+        return characterService.forCharactersURL(name, age, movies);
     }
 
-
-    // TODO: 5/7/2021 Agregar personajes a la  pelicula en vez de peliculas a los personajes. 
     @PostMapping("/save")
-    public void saveCharacter(@RequestBody CharacterDtoSave characterDto){
-        characterService.saveCharacter(characterDto);
+    public ResponseEntity<String> saveCharacter(@RequestBody CharacterDtoSave characterDto){
+        try{
+            characterService.saveCharacter(characterDto);
+            return ResponseEntity.status(HttpStatus.CREATED).body("The character was created.");
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The character wasn't created.");
+        }
     }
 
 
     @PutMapping("/edit/{id}")
-    public void editCharacter(@PathVariable String id, @RequestBody CharacterDtoSave character){
-        characterService.editCharacter(id, character);
+    public ResponseEntity<String> editCharacter(@PathVariable String id, @RequestBody CharacterDtoSave character){
+        try{
+            characterService.editCharacter(id, character);
+            return ResponseEntity.status(HttpStatus.CREATED).body("The character was edit.");
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The character wasn't edit.");
+        }
     }
 
 
     @DeleteMapping("/delete/{id}")
-    public void deleteCharacter(@PathVariable String id){
-        characterService.deleteCharacter(id);
+    public ResponseEntity<String> deleteCharacter(@PathVariable String id){
+        try{
+            characterService.deleteCharacter(id);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("The character was deleted.");
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The character wasn't deleted.");
+        }
     }
 }
 
