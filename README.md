@@ -44,7 +44,7 @@ information so that any frontend can consume it.
 ### Character details - Age
 
 
-[Photo about character details filtered by age](C:\Users\user\Documents\Ada\ChallengeAlkemy\DocumentacionChallengeAlkemy/CharacterDetails-age.png)
+[Photo about character details filtered by age](https://github.com/VaneMedina/ChallengeAlkemyDisney/blob/master/DocumentacionFilesChallengeAlkemy/CharacterDetails-age.png)
 
         Brings back the characters filtered by age of the character.
 
@@ -115,6 +115,6 @@ information so that any frontend can consume it.
 ### Character edit
 
 
-[Photo about character edit](C:\Users\user\Documents\Ada\ChallengeAlkemy\DocumentacionChallengeAlkemy/CharacterDetails-editSuccess.png)
+[Photo about character edit](https://github.com/VaneMedina/ChallengeAlkemyDisney/blob/master/DocumentacionFilesChallengeAlkemy/CharacterDetails-edit.png)
 
         Edits the character only if all atributtes are presents and if the fields to edit aren´t equals to the current fields.
